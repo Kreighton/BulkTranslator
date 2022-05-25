@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Profile-main{% endblock %}
+
+{% block content %}
+        <table class="table-bordered">
+            <tr>
+                <th>Domain</th>
+                <th>Selector_type</th>
+                <th>Selector</th>
+            </tr>
+    {% for item in user_selectors_list %}
+            <tr>
+                <td>{{ item.domain_for_selector }}</td>
+                <td>{{ item.selector_type }}</td>
+                <td>{{ item.user_selector }}</td>
+                <td><a href="{% url 'edit_selector' item.domain_for_selector %}">Edit selector</a></td>
+            </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock title %}</title>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Home</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% for category in categories %}
+                  <li class="nav-item">
+                       <a href="/{{ category.slug }}" class="nav-link active">{{ i.category_name }}</a>
+                  </li>
+              {% endfor %}
+          </ul>
+
+        </div>
+      <div class="d-flex flex-row-reverse">
+        {% if user.is_authenticated  %}
+            <span class="navbar-text"> Hello, <a href="{% url 'account' %}">{{ user.username }}</a></span>
+            <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log out</a>
+        {% else %}
+            <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Log in</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'register_user' %}">Register</a>
+        {% endif %}
+            <a class="nav-link active" aria-current="page" href="{% url 'custom_parse' %}">Parse</a>
+            </div>
+  </div>
+</nav>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="{{ message.tags }} alert alert-success" role="alert">{{ message }}</div>
+            {% endif %}
+            {% if message.tags == 'error' %}
+                <div class="{{ message.tags }} alert alert-danger" role="alert">{{ message }}</div>
+            {% endif %}
+            {{ message  }}
+        {% endfor %}
+    {% endif %}
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p class="{{ message.tags }} alert alert-danger" role="alert">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+</body>
+</html>

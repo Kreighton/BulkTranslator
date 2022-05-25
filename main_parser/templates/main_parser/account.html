@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Profile-main{% endblock %}
+
+{% block content %}
+    <a href="#">Settings</a>
+    <a href="{% url 'add_selector' %}">Add new selector</a>
+    <a href="{% url 'user_selectors' %}">Review selectors</a>
+{% endblock %}

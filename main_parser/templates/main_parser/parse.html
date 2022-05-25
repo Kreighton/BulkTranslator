@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    {% if valid_urls_list %}
+        <a href="{% url 'custom_selectors' %}">Go to selectors choosing ></a>
+    {% endif %}
+    <form method="post">
+        <div class="mb-3">
+            {% csrf_token %}
+            {{ form|crispy }}<br>
+            <p><input type="submit" class="btn btn-success" value="Commit"></p>
+        </div>
+    </form>
+    <!-- Добавить пометку о том, что не более 20 ссылок на незарег. пользователей -->
+{% endblock %}

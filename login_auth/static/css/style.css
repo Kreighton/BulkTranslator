@@ -1,0 +1,9 @@
+textarea.form-control.textarea{
+    width: 500px;
+    height: 150px;
+    max-height: 500px;
+}
+
+.article-item-readonly{
+    color:grey;
+}

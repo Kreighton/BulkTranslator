@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Selectors{% endblock %}
+
+{% block content %}
+<a href="{% url 'custom_parse' %}" xmlns="http://www.w3.org/1999/html">< Back to urls</a>
+<form method="post">
+    {% csrf_token %}
+    <table class="table-bordered">
+        <tr>
+            <th>Use whitelist?</th>
+            <th>URLs</th>
+            <th>Type of selectors</th>
+            <th>Selector field</th>
+        </tr>
+        {% for key, item in valid_urls_list.items %}
+
+        <tr>
+            <td>
+                {% if user.is_authenticated %}
+                    {% if item %}
+                        <input type="checkbox" name="whitelist_{{ key }}">
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td><input type="text" name="article_item" class="article-item-readonly" value="{{ key }}" readonly></td>
+            <td>{{ form.type_of_selector }}</td>
+            <td>{{ form.custom_selector }}</td>
+        </tr>
+
+    {% endfor %}
+    </table>
+    <div>
+        <br>
+        <input type="submit" name="set_with_google" value="Translate with Google">
+        <input type="submit" name="set_with_deepl" value="Translate with Deepl">
+    </div>
+</form>
+{% endblock %}

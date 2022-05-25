@@ -1,0 +1,56 @@
+Index: main_parser/forms.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main_parser/forms.py b/main_parser/forms.py
+--- a/main_parser/forms.py	
++++ b/main_parser/forms.py	(date 1653119008426)
+@@ -14,30 +14,30 @@
+             visible.field.widget.attrs['class'] = 'form-control'
+ 
+ 
+-SELECTOR_TYPE_CHOICES = [
+-    ('1', 'Default'),
+-    ('2', 'CSS'),
+-    ('3', 'Xpath'),
+-]
++SELECTOR_TYPE_CHOICES = (
++    ('Default', 'Default'),
++    ('CSS', 'CSS'),
++    ('XPath', 'Xpath'),
++)
+ 
+-SELECTOR_TYPE_CHOICES_AUTHORISED = [
+-    ('1', 'Default'),
+-    ('2', 'CSS'),
+-    ('3', 'Xpath'),
+-    ('4', 'Whitelist'),
+-]
++SELECTOR_TYPE_CHOICES_AUTHORISED = (
++    ('Default', 'Default'),
++    ('CSS', 'CSS'),
++    ('XPath', 'Xpath'),
++    ('Whitelist', 'Whitelist'),
++)
+ 
+-SELECTOR_TYPE_CHOICES_HEADERS = (
+-    ('1', 'Default'),
+-    ('2', 'CSS'),
+-    ('3', 'Xpath'),
+-    ('4', 'Custom'),
++SELECTOR_TYPE_CHOICES_GLOBAL = (
++    ('Default', 'Default'),
++    ('CSS', 'CSS'),
++    ('XPath', 'Xpath'),
++    ('Custom', 'Custom'),
+ )
+ 
+ 
+ class ChooseSelectorsForm(forms.Form):
+     custom_selector_global = forms.CharField(max_length=200, required=False, label=False)
+-    type_of_selector_global = forms.ChoiceField(choices=SELECTOR_TYPE_CHOICES_HEADERS, label=False)
++    type_of_selector_global = forms.ChoiceField(choices=SELECTOR_TYPE_CHOICES_GLOBAL, label=False)
+ 
+     def __init__(self, *args, **kwargs):
+         repeats = kwargs.pop('repeats')

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+    {% for article in list_of_articles %}
+        {{ article }}
+        <br>
+    {% endfor %}
+{% endblock %}

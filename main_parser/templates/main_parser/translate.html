@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Select languages{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <table class="table-bordered">
+            <tr>
+                <th>Language_from</th>
+                <th>Language_to</th>
+            </tr>
+            <tr>
+                <td>{{ form.lang_from }}</td>
+                <td>{{ form.lang_to }}</td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="Select languages">
+    </form>
+{% endblock %}
